@@ -1,5 +1,5 @@
 {
-  "FilePath": "/opt/github/webapi-swagger/webapi-dotnet-core-doc-swagger-/webapi-dotnet-core-doc-swagger-.csproj",
+  "FilePath": "/opt/github/webapi-swagger/webapi-dotnet-core-doc-swagger-/00 - Scaffold/webapi-dotnet-core-doc-swagger-.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-2.1",
     "LanguageVersion": "2.1",
@@ -15,7 +15,7 @@
         "Kind": "ITagHelper",
         "Name": "Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper",
         "AssemblyName": "Microsoft.AspNetCore.Mvc.TagHelpers",
-        "Documentation": null,
+        "Documentation": "\n            <summary>\n            <see cref=\"T:Microsoft.AspNetCore.Razor.TagHelpers.ITagHelper\" /> implementation targeting &lt;a&gt; elements.\n            </summary>\n        ",
         "TagOutputHint": null,
         "TagMatchingRules": [
           {

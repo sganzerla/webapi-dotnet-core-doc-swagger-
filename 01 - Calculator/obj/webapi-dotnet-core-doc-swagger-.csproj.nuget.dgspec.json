@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/opt/github/webapi-swagger/webapi-dotnet-core-doc-swagger-/webapi-dotnet-core-doc-swagger-.csproj": {}
+    "/opt/github/webapi-swagger/webapi-dotnet-core-doc-swagger-/01 - Calculator/webapi-dotnet-core-doc-swagger-.csproj": {}
   },
   "projects": {
-    "/opt/github/webapi-swagger/webapi-dotnet-core-doc-swagger-/webapi-dotnet-core-doc-swagger-.csproj": {
+    "/opt/github/webapi-swagger/webapi-dotnet-core-doc-swagger-/01 - Calculator/webapi-dotnet-core-doc-swagger-.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/opt/github/webapi-swagger/webapi-dotnet-core-doc-swagger-/webapi-dotnet-core-doc-swagger-.csproj",
+        "projectUniqueName": "/opt/github/webapi-swagger/webapi-dotnet-core-doc-swagger-/01 - Calculator/webapi-dotnet-core-doc-swagger-.csproj",
         "projectName": "webapi-dotnet-core-doc-swagger-",
-        "projectPath": "/opt/github/webapi-swagger/webapi-dotnet-core-doc-swagger-/webapi-dotnet-core-doc-swagger-.csproj",
+        "projectPath": "/opt/github/webapi-swagger/webapi-dotnet-core-doc-swagger-/01 - Calculator/webapi-dotnet-core-doc-swagger-.csproj",
         "packagesPath": "/home/alisson/.nuget/packages/",
-        "outputPath": "/opt/github/webapi-swagger/webapi-dotnet-core-doc-swagger-/obj/",
+        "outputPath": "/opt/github/webapi-swagger/webapi-dotnet-core-doc-swagger-/01 - Calculator/obj/",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "/usr/share/dotnet/sdk/NuGetFallbackFolder"

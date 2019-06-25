@@ -1,4 +1,4 @@
-namespace _02___Diferent_Verbs.Model
+namespace _02___Different_Verbs.Model
 {
     public class Person
     {
@@ -7,7 +7,6 @@ namespace _02___Diferent_Verbs.Model
         public string LastName {get;set;}
         public string Address {get;set;}
         public string Gender {get;set;}
-        
-        
+                
     }
 }

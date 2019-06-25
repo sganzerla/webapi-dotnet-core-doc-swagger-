@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using _02___Different_Verbs.Service.Implementations;
 
 namespace webapi_dotnet_core_doc_swagger_
 {
@@ -26,6 +27,8 @@ namespace webapi_dotnet_core_doc_swagger_
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            
+            services.AddScoped<IPersonService, PersonServiceImpl>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

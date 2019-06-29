@@ -18,7 +18,7 @@ namespace webapi_dotnet_core_doc_swagger_.Controllers
         }
 
         [HttpGet]
-        public  ActionResult Get()
+        public  IActionResult Get()
         {
             return Ok(_personService.FindAll());
         }

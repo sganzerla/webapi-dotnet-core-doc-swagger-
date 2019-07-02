@@ -1,27 +1,28 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using System;
+using System.Collections.Generic;
+
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc.Versioning;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
+
 using webapi_dotnet_core_doc_swagger.Business;
+using webapi_dotnet_core_doc_swagger.Business.Implementations;
 using webapi_dotnet_core_doc_swagger.Model.Context;
 using webapi_dotnet_core_doc_swagger.Repository;
-using webapi_dotnet_core_doc_swagger.Business.Implementations;
 using webapi_dotnet_core_doc_swagger.Repository.Implementations;
-using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
-using System;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace webapi_dotnet_core_doc_swagger
 {
     public class Startup
-    {
-        private readonly ILogger _logger;
+    { 
+         private readonly ILogger _logger;
         public IConfiguration _configuration { get; }
         public IHostingEnvironment _environment { get; }
-               
+
         public Startup(IConfiguration configuration, IHostingEnvironment environment, ILogger<Startup> logger)
         {
             _configuration = configuration;
@@ -32,9 +33,10 @@ namespace webapi_dotnet_core_doc_swagger
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var connectionString = _configuration["MySqlConnection:MySqlConnectionString"];
-            
+             var connectionString = _configuration["MySqlConnection:MySqlConnectionString"];
             services.AddDbContext<MySQLContext>(options => options.UseMySql(connectionString));
+
+            //Adding Migrations Support
             ExecuteMigrations(connectionString);
 
             
@@ -45,20 +47,33 @@ namespace webapi_dotnet_core_doc_swagger
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-            }
+            loggerFactory.AddConsole(_configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
 
-            app.UseMvc();
+            //Enable Swagger
+          //  app.UseSwagger();
+
+            // app.UseSwaggerUI(c => {
+            //     c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            // });
+
+            //Starting our API in Swagger page
+             var option = new RewriteOptions();
+            // option.AddRedirect("^$", "swagger");
+           app.UseRewriter(option);
+
+            //Adding map routing
+            // app.UseMvc(routes =>
+            // {
+            //     routes.MapRoute(
+            //         name: "DefaultApi",
+            //         template: "{controller=Values}/{id?}");
+            // });
+
         }
-        private void ExecuteMigrations(string connectionString)
+       private void ExecuteMigrations(string connectionString)
         {
             if (_environment.IsDevelopment())
             {
@@ -82,5 +97,6 @@ namespace webapi_dotnet_core_doc_swagger
                 }
             }
         }
+
     }
 }

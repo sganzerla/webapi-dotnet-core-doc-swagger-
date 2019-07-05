@@ -7,8 +7,13 @@ namespace webapi_dotnet_core_doc_swagger.Controllers
     // por convenção
     // por path/Route
     // por namespace
-    [Route("api/[controller]/v{version:apiVersion}")]
-    [ApiVersion("1")]    
+     /* Mapeia as requisições de http://localhost:{porta}/api/persons/v1/
+    Por padrão o ASP.NET Core mapeia todas as classes que extendem Controller
+    pegando a primeira parte do nome da classe em lower case [Person]Controller
+    e expõe como endpoint REST
+    */
+    
+    [Route("api/[controller]")]  
     public class PersonsController : ControllerBase
     {
         private IPersonBusiness _personBusiness;

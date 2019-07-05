@@ -14,6 +14,7 @@ using webapi_dotnet_core_doc_swagger.Model.Context;
 using webapi_dotnet_core_doc_swagger.Repository;
 using webapi_dotnet_core_doc_swagger.Repository.Implementations;
 using Microsoft.AspNetCore.Rewrite;
+using Microsoft.Net.Http.Headers;
 
 namespace webapi_dotnet_core_doc_swagger
 {
@@ -38,9 +39,8 @@ namespace webapi_dotnet_core_doc_swagger
 
             //Adding Migrations Support
             ExecuteMigrations(connectionString);
-
-            
-            services.AddApiVersioning();
+                        
+           
             // injeção de dependências         
             services.AddScoped<IPersonBusiness, PersonBusinessImpl>();
             services.AddScoped<IPersonRepository, PersonRepositoryImpl>();
@@ -52,26 +52,7 @@ namespace webapi_dotnet_core_doc_swagger
             loggerFactory.AddConsole(_configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            //Enable Swagger
-          //  app.UseSwagger();
-
-            // app.UseSwaggerUI(c => {
-            //     c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            // });
-
-            //Starting our API in Swagger page
-             var option = new RewriteOptions();
-            // option.AddRedirect("^$", "swagger");
-           app.UseRewriter(option);
-
-            //Adding map routing
-            // app.UseMvc(routes =>
-            // {
-            //     routes.MapRoute(
-            //         name: "DefaultApi",
-            //         template: "{controller=Values}/{id?}");
-            // });
-
+          
         }
        private void ExecuteMigrations(string connectionString)
         {

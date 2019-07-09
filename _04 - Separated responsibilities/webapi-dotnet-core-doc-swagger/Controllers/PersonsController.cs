@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using webapi_dotnet_core_doc_swagger.Model;
 using webapi_dotnet_core_doc_swagger.Business;
+
+
 namespace webapi_dotnet_core_doc_swagger.Controllers
 {
     // há tres formas de versionar api
@@ -10,11 +12,12 @@ namespace webapi_dotnet_core_doc_swagger.Controllers
      /* Mapeia as requisições de http://localhost:{porta}/api/persons/v1/
     Por padrão o ASP.NET Core mapeia todas as classes que extendem Controller
     pegando a primeira parte do nome da classe em lower case [Person]Controller
-    e expõe como endpoint REST
+    dote expõe como endpoint REST
     */
     
-    [Route("api/[controller]")]  
-    public class PersonsController : ControllerBase
+    [ApiVersion("1")]
+    [Route("api/v{version:apiVersion}/[controller]")] 
+    public class PersonsController : Controller
     {
         private IPersonBusiness _personBusiness;
 
@@ -25,7 +28,8 @@ namespace webapi_dotnet_core_doc_swagger.Controllers
         [HttpGet]
         public  IActionResult Get()
         {
-            return Ok(_personBusiness.FindAll());
+           return Ok();
+           // return Ok(_personBusiness.FindAll());
         }
 
         // GET api/values/5

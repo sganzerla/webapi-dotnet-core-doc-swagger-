@@ -1,10 +1,9 @@
-use swagger;
-create table `persons` (
- `Id` int (10) unsigned null default null,
- `FirstName` varchar(50) null default null,
- `LastName` varchar(50) null default null,
- `Address` varchar(50) null default null,
- `Gender` varchar(50) null default null
+CREATE TABLE `persons` (
+	`Id` int(10)   NULL DEFAULT NULL,
+	`FirstName` VARCHAR(50) NULL DEFAULT NULL,
+	`LastName` VARCHAR(50) NULL DEFAULT NULL,
+	`Address` VARCHAR(50) NULL DEFAULT NULL,
+	`Gender` VARCHAR(50) NULL DEFAULT NULL
 )
-engine=InnoDB;
-
+ENGINE=InnoDB
+;

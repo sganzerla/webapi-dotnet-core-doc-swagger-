@@ -1,2 +1,1 @@
-use swagger;
-alter table `persons` change Id Id int(10) auto_increment primary key;
+ALTER TABLE `persons` CHANGE `Id` `Id` INT(10) AUTO_INCREMENT PRIMARY KEY;

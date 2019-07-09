@@ -34,6 +34,8 @@ namespace webapi_dotnet_core_doc_swagger
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
              var connectionString = _configuration["MySqlConnection:MySqlConnectionString"];
             services.AddDbContext<MySQLContext>(options => options.UseMySql(connectionString));
 
@@ -47,14 +49,14 @@ namespace webapi_dotnet_core_doc_swagger
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+          public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             loggerFactory.AddConsole(_configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
-          
+            app.UseHttpsRedirection();
+            app.UseMvc();
         }
-       private void ExecuteMigrations(string connectionString)
+         private void ExecuteMigrations(string connectionString)
         {
             if (_environment.IsDevelopment())
             {
@@ -77,6 +79,7 @@ namespace webapi_dotnet_core_doc_swagger
                     throw;
                 }
             }
+            
         }
 
     }
